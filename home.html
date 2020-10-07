@@ -2,11 +2,142 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Movie Ticket Booking</title>
+    <title>Movie Seat Booking</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    //
+<!--drop down menu with list of movies to choose-->
+    <div class="movie-container">
+        <label for="movies" class="title">
+            Pick a movie:
+        </label>
+        <select name="movies" id="movies">
+            <option value="10">
+                Avengers Infinity War (£10)
+            </option>
+            <option value="12">
+                Avengers Endgame (£12)
+            </option>
+            <option value="8">
+                The Shawshank Redemption (£8)
+            </option>
+            <option value="5">
+                The Godfather (£5)
+            </option>
+            <option value="12">
+                The Dark Knight (£12)
+            </option>
+            <option value="14">
+                The Lord of the Rings (£14)
+            </option>
+        </select>
+    </div>
+
+<!--color key to show which seats are available-->
+    <ul class="showcase">
+        <li>
+            <div class="seat">
+
+            </div>
+            <small>
+                N/A
+            </small>
+        </li>
+        <li>
+            <div class="seat selected">
+
+            </div>
+            <small>
+                Selected
+            </small>
+        </li>
+        <li>
+            <div class="seat occupied">
+
+            </div>
+            <small>
+                Occupied
+            </small>
+        </li>
+    </ul>
+
+<!--map of the seats themselves as icons-->
+    <div class="container">
+        <div class="screen">
+
+        </div>
+
+        <div class="row">
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat occupied"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat occupied"></div>
+            <div class="seat"></div>
+        </div>
+
+        <div class="row">
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat occupied"></div>
+            <div class="seat occupied"></div>
+        </div>
+
+        <div class="row">
+            <div class="seat"></div>
+            <div class="seat occupied"></div>
+            <div class="seat occupied"></div>
+            <div class="seat occupied"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+        </div>
+
+        <div class="row">
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat occupied"></div>
+            <div class="seat occupied"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+        </div>
+
+        <div class="row">
+            <div class="seat"></div>
+            <div class="seat occupied"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat occupied"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+        </div>
+
+        <div class="row">
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat occupied"></div>
+            <div class="seat occupied"></div>
+            <div class="seat occupied"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+        </div>
+    </div>
+
+<!--text saying which seats user has selected and how much they cost-->
+    <p class="text">
+        You have selected <span id="count">0</span> seats for a total cost of £<span id="total">0</span>.
+    </p>
 
 <script src="script.js"></script>
 </body>
