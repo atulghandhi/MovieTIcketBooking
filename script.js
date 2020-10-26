@@ -15,7 +15,10 @@ const total = document.getElementById('total');
 const movieSelect = document.getElementById('movies');
 
 //select value attribute of movie selected. Adding the '+' in front turns variable into an int.
-let ticketPrice = +movieSelect.value;
+let ticketPrice;
+
+//call function to add data from local storage if applicable
+populateUI();
 
 function updateSelectedCount(){
     selectedSeats = document.querySelectorAll('.row .selected');
@@ -52,7 +55,21 @@ movieSelect.addEventListener('change', e => {
 })
 
 
+function populateUI() {
+    const seats = JSON.parse(localStorage.getItem('seats'))
+    const movie = localStorage.getItem('movie')
+    const ticket = localStorage.getItem('ticket')
 
+    if(seats !== null && seats.length>0) {
+        for(const seat of seats) {
+            availableSeats.item(seat).classList.add('selected');
+        }
+    }
+
+    movieSelect.selectedIndex = movie;
+    ticketPrice = +movieSelect.value;
+    updateSelectedCount();
+}
 
 
 
