@@ -1,17 +1,68 @@
 //select container of screen and all seats in diagram
 const container = document.querySelector('.container');
-//select all the seats in the rows (not in the colour key) that are not occupied (don't have 'occupied' class)
+
+//select all elements with .row class and .seat class and not .occupied class
 const availableSeats = document.querySelectorAll('.row .seat:not(.occupied)');
-//select price and number of seats selected text snippets so they can be changed
+
+//select all elements with a .selected class
+let selectedSeats = document.querySelectorAll('.row .selected');
+
+//select number of seats selected and price of seats
 const count = document.getElementById('count');
 const total = document.getElementById('total');
-//select list of movies that can be selected
-const movieSelect = document.getElementById('movies');
-//select value attribute of ticket selected. Adding the '+' in front turns variable into an int.
-const ticketPrice = +movieSelect.value;
 
+//select drop down list of movies
+const movieSelect = document.getElementById('movies');
+
+//select value attribute of movie selected. Adding the '+' in front turns variable into an int.
+let ticketPrice = +movieSelect.value;
+
+function updateSelectedCount(){
+    selectedSeats = document.querySelectorAll('.row .selected');
+
+    //save and index of all seats selected from the container of all available seats
+    const seatsIndex = [...selectedSeats].map( seat => [...availableSeats].indexOf(seat));
+    localStorage.setItem('seats', JSON.stringify(seatsIndex));
+
+    count.textContent = `${selectedSeats.length}`;
+    total.textContent = `${selectedSeats.length*ticketPrice}`;
+}
+
+function saveMovieSelected(ticket, movie) {
+    localStorage.setItem('movie', movie);
+    localStorage.setItem('ticket', ticket);
+}
+
+//Seat select event
 container.addEventListener('click', e => {
-    if(e.target.classList.contains('seat') && !e.target.classList.contains('occupied')){
-        count.textContent = 'the worst';
+    const target = e.target;
+    if(target.classList.contains('seat') && !target.classList.contains('occupied')){
+        target.classList.toggle('selected');
+        updateSelectedCount();
     }
 });
+
+//Drop down Movie change event
+movieSelect.addEventListener('change', e => {
+    const target = e.target;
+    ticketPrice = +target.value;
+
+    saveMovieSelected(ticketPrice, target.selectedIndex);
+    updateSelectedCount();
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
